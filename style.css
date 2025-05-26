@@ -116,8 +116,76 @@ body.light button:active {
     font-size: 10vw; /* Courier New szélesebb lehet, így kicsit kisebb */
     letter-spacing: .05em;
   }
-  button {
+  button { /* Ez az általános gombra vonatkozik, a hardReloadBtn felülírhatja */
     font-size: 1rem;
     padding: 10px 20px;
   }
+}
+
+/* STÍLUSOK A HARD RELOAD GOMBHOZ */
+#hardReloadBtn {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 50px; /* Igazítsd az emoji méretéhez és a paddinghoz */
+  height: 50px;
+  border-radius: 50%; /* Kerek gomb */
+  background-color: #525252; /* Alap sötét téma szín */
+  color: white;
+  font-size: 24px; /* Az emoji méretéhez */
+  border: none;
+  cursor: pointer;
+  display: flex; /* Az emoji középre igazításához */
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 10px rgba(0, 0, 0, 0.18);
+  z-index: 1000; /* Biztosan felül legyen */
+
+  /* Kezdetben rejtett, animálható megjelenés/eltűnés */
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8) translateY(10px); /* Kezdeti állapot az animációhoz */
+  transition: opacity 0.3s ease-in-out,
+              visibility 0.3s ease-in-out, /* Bár a visibility nem igazán animálódik, az opacityhez igazítjuk */
+              transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), /* "Elastic" beúszás */
+              background-color 0.25s ease-out,
+              box-shadow 0.25s ease-out;
+}
+
+#hardReloadBtn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+}
+
+#hardReloadBtn:hover {
+  background-color: #676767;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25), 0 8px 15px rgba(0, 0, 0, 0.22);
+  /* Hover transform-ot nem adok, mert a .visible már kezeli a scale-t, de lehetne itt is finomítani */
+}
+
+#hardReloadBtn:active {
+  background-color: #4a4a4a;
+  transform: scale(0.95); /* Kicsi benyomódás kattintáskor */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.18);
+}
+
+/* Hard Reload gomb világos módban */
+body.light #hardReloadBtn {
+  background-color: #e0e0e0;
+  color: #222222; /* Az emoji fekete lesz, a háttér változik */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light #hardReloadBtn:hover {
+  background-color: #d1d1d1;
+  color: #111111;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 8px 15px rgba(0, 0, 0, 0.12);
+}
+
+body.light #hardReloadBtn:active {
+  background-color: #c5c5c5;
+  color: #000000;
+  transform: scale(0.95);
 }
