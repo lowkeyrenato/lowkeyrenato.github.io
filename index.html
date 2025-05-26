@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>lowkeyrenato</title>
+  <style>
+    /* Alap stílusok dark mode-ban */
+    :root {
+      --bg-color-dark: #2e2e2e; /* sötét szürke */
+      --text-color-dark: #ffffff;
+      --bg-color-light: #f5f5f5;
+      --text-color-light: #333333; /* sötét szürke a fekete helyett */
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--bg-color-dark);
+      color: var(--text-color-dark);
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      font-size: 6vw;
+      font-weight: 900;
+      margin: 0 0 30px;
+      user-select: none;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #444;
+      color: white;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    /* Light mode stílus */
+    body.light {
+      background-color: var(--bg-color-light);
+      color: var(--text-color-light);
+    }
+
+    body.light button {
+      background-color: #ddd;
+      color: #121212;
+    }
+
+    body.light button:hover {
+      background-color: #bbb;
+    }
+
+    /* Reszponzív: kisebb betűméret mobilon */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 12vw;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>lowkeyrenato</h1>
+  <button id="toggleThemeBtn">Világos mód</button>
+
+  <script>
+    const btn = document.getElementById('toggleThemeBtn');
+    const body = document.body;
+
+    // Alapból dark mode van, így gomb szöveg legyen "Világos mód"
+    btn.textContent = 'Világos mód';
+
+    btn.addEventListener('click', () => {
+      body.classList.toggle('light');
+      if (body.classList.contains('light')) {
+        btn.textContent = 'Sötét mód';
+      } else {
+        btn.textContent = 'Világos mód';
+      }
+    });
+  </script>
+</body>
+</html>
