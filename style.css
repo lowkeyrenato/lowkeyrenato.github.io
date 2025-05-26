@@ -41,27 +41,44 @@ h1 {
 /* A h1.typing-done osztályra már nincs szükség a kurzorvillogás vezérléséhez,
    mivel azt akarjuk, hogy folyamatosan villogjon. */
 
+
 /* Villogó kurzor animáció */
 @keyframes blinking-cursor {
   from, to { border-right-color: transparent; }
   50% { border-right-color: var(--cursor-color); }
 }
 
+/* ÚJ GOMB STÍLUSOK */
 button {
-  padding: 12px 24px;
-  font-size: 1.2rem;
+  padding: 12px 28px; /* Kicsit több padding oldalt */
+  font-size: 1.1rem;  /* Kicsit kisebb betűméret, ha uppercase */
+  font-weight: 600;   /* Félkövér */
+  letter-spacing: 0.5px;
+  /* text-transform: uppercase; /* Ha szeretnéd nagybetűssé tenni */
   cursor: pointer;
   border: none;
-  border-radius: 6px;
-  background-color: #444;
+  border-radius: 8px; /* Kerekebb sarkok */
+  background-color: #525252; /* Kicsit finomabb sötét szürke */
   color: white;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif; /* Ahogy kérted, maradt az Arial */
   user-select: none;
-  font-family: Arial, sans-serif; /* Gombnak maradhat az Arial */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); /* Finomabb, mélyebb árnyék */
+  transition: background-color 0.25s ease-out,
+              color 0.25s ease-out,
+              transform 0.15s ease-out,
+              box-shadow 0.25s ease-out;
 }
 
 button:hover {
-  background-color: #666;
+  background-color: #676767; /* Világosabb hover szín */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.26); /* Kiemeltebb árnyék hoverre */
+  transform: translateY(-3px) scale(1.03); /* Enyhe emelkedés és nagyítás */
+}
+
+button:active { /* Amikor a gombra kattintanak */
+  background-color: #4a4a4a; /* Még sötétebb aktív állapotban */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); /* Visszafogottabb árnyék */
+  transform: translateY(-1px) scale(1.01); /* Kisebb emelkedés, mint a hover */
 }
 
 /* Light mode stílus */
@@ -71,18 +88,27 @@ body.light {
   --cursor-color: #cc0000; /* Sötétebb piros világos háttérhez */
 }
 
-/* Mivel a blinking-cursor animáció a var(--cursor-color)-t használja,
-   és a body.light ezt felülírja, a kurzor színe automatikusan frissül
-   témaváltáskor. Nincs szükség extra CSS szabályra itt a h1-hez. */
-
+/* ÚJ LIGHT MODE GOMB STÍLUSOK */
 body.light button {
-  background-color: #ddd;
-  color: #121212;
+  background-color: #e0e0e0; /* Világos szürke alap light mode-ban */
+  color: #222222; /* Sötétebb szöveg light mode-ban */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15); /* Finomabb árnyék light mode-ban */
 }
 
 body.light button:hover {
-  background-color: #bbb;
+  background-color: #d1d1d1; /* Kicsit sötétebb hover szín light mode-ban */
+  color: #111111;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.18);
+  transform: translateY(-3px) scale(1.03);
 }
+
+body.light button:active {
+  background-color: #c5c5c5;
+  color: #000000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px) scale(1.01);
+}
+
 
 /* Reszponzív: kisebb betűméret mobilon */
 @media (max-width: 600px) {
